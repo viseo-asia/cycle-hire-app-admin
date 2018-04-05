@@ -1,0 +1,17 @@
+.filter-form-container {
+    padding: 30px;
+    background-color: rgb(40, 63, 137);
+    color: #fff;
+}
+
+.filter-form-container .date-picker-container span,
+.filter-form-container .form-area-container span,
+.filter-form-container .form-docking-station-container span{
+    color: rgb(72, 181, 222);
+    font-size: 12px;
+}
+
+.filter-form-container .date-picker > div {
+    padding-bottom: 20px;
+    width: 100% !important;
+}

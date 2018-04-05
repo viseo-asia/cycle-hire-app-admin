@@ -1,0 +1,7 @@
+.dashboard-container .active-filter {
+    visibility: visible;
+}
+
+.dashboard-container .inactive-filter {
+    visibility: hidden;
+}

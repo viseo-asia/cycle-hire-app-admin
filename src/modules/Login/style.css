@@ -1,0 +1,29 @@
+.login-container {
+    background-color: rgb(40, 63, 137);
+    padding-top: 40%;
+    position: relative;
+}
+
+.login-container button {
+    font-family: Roboto-Medium, sans-serif;
+}
+
+.form-container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.forgot-password-container {
+    padding: 5pt;
+}
+
+.forgot-password-container a {
+    font-family: Roboto-Italic, sans-serif;
+    color: rgb(72, 181, 222);
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+.login-container .form-submit-container {
+    padding: 20px 40px;
+}

@@ -28,7 +28,7 @@ export default class DashboardContainer extends Component {
                     onClick={this._openFilterHandler.bind(this, openFilter)}
                     label="Filters"
                     fullWidth={true}
-                    style={{ textAlign: 'left', color: "#ffffff", borderRadius: 0 }}
+                    style={{ borderRadius: 0, color: '#ffffff', paddingLeft: 15 }}
                     backgroundColor="#233672"
                     rippleColor="#233672"
                     hoverColor="#233672"

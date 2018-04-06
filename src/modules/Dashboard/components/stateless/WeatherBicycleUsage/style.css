@@ -15,3 +15,9 @@
     color: #283f89;
     margin-bottom: 20px;
 }
+
+.station-chart-container .compose-chart-container {
+    width: 90%;
+    margin: auto;
+    height: 90%;
+}

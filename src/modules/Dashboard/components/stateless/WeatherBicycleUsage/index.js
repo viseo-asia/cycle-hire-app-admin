@@ -20,7 +20,7 @@ const _chardWidthHandler = () => {
     return window.innerWidth - 70
 };
 
-const WeatherBicycleUsage = ({ containerStyle, paperStyle }) => (
+const WeatherBicycleUsage = ({ containerStyle, paperStyle, chartHeight }) => (
     <div className="station-chart-container container clearfix" style={containerStyle}>
         <Paper zDepth={1} style={Object.assign({}, theme.paper, paperStyle)}>
             <div className="row">
@@ -32,22 +32,25 @@ const WeatherBicycleUsage = ({ containerStyle, paperStyle }) => (
                 </div>
             </div>
 
-            <ComposedChart width={_chardWidthHandler()} height={150} data={data}>
-                <XAxis hide={true} />
-                <YAxis hide={true} />
-                <Legend verticalAlign="top" height={36}/>
-                <CartesianGrid stroke="#f5f5f5" />
-                <Area type="monotone" dataKey="amt" fill="#ffba00" stroke="#FFC142" />
-                <Bar dataKey="uv" barSize={20} fill="#48b5de" />
-                <Line type="monotone" dataKey="pv" fill="#fffff" stroke="#283f89" />
-            </ComposedChart>
+            <div className="compose-chart-container">
+                <ComposedChart width={_chardWidthHandler()} height={chartHeight ? chartHeight : 200} data={data}>
+                    <XAxis hide={true} />
+                    <YAxis hide={true} />
+                    <Legend verticalAlign="top" height={36}/>
+                    <CartesianGrid stroke="#f5f5f5" />
+                    <Area type="monotone" dataKey="amt" fill="#ffba00" stroke="#FFC142" />
+                    <Bar dataKey="uv" barSize={20} fill="#48b5de" />
+                    <Line type="monotone" dataKey="pv" fill="#fffff" stroke="#283f89" />
+                </ComposedChart>
+            </div>
         </Paper>
     </div>
 );
 
 WeatherBicycleUsage.propTypes = {
     containerStyle: PropTypes.object,
-    paperStyle: PropTypes.object
+    paperStyle: PropTypes.object,
+    chartheight: PropTypes.number
 };
 
 export default WeatherBicycleUsage;

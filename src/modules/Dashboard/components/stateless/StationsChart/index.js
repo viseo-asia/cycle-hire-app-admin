@@ -20,7 +20,7 @@ const _chardWidthHandler = () => {
     return window.innerWidth - 70
 };
 
-const StationChart = ({ containerStyle, paperStyle }) => (
+const StationChart = ({ containerStyle, paperStyle, chartHeight }) => (
     <div className="station-chart-container container clearfix" style={containerStyle}>
         <Paper zDepth={1} style={Object.assign({}, theme.paper, paperStyle)}>
             <div className="row">
@@ -32,19 +32,21 @@ const StationChart = ({ containerStyle, paperStyle }) => (
                 </div>
             </div>
 
-            <BarChart
-                width={_chardWidthHandler()}
-                height={200}
-                data={data}
-                layout="vertical"
-                barSize={30}
-                barCategoryGap={20}
-
-            >
-                <XAxis hide={true}/>
-                <YAxis type="category" dataKey="name" />
-                <Bar dataKey="uv" fill="#48b5de" />
-            </BarChart>
+            <div className="bar-chart-container">
+                <BarChart
+                    width={_chardWidthHandler()}
+                    height={chartHeight ? chartHeight : 200}
+                    data={data}
+                    layout="vertical"
+                    barSize={30}
+                    barCategoryGap={20}
+                    margin={{top: 0, bottom: 0, }}
+                >
+                    <XAxis hide={true}/>
+                    <YAxis type="category" dataKey="name" />
+                    <Bar dataKey="uv" fill="#48b5de" />
+                </BarChart>
+            </div>
 
             <div className="map-button-container clearfix">
                 <RaisedButton
@@ -61,7 +63,8 @@ const StationChart = ({ containerStyle, paperStyle }) => (
 
 StationChart.propTypes = {
     containerStyle: PropTypes.object,
-    paperStyle: PropTypes.object
+    paperStyle: PropTypes.object,
+    chartHeight: PropTypes.number
 };
 
 export default StationChart;

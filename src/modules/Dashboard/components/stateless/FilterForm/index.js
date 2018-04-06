@@ -8,60 +8,58 @@ import Ionicon from 'react-ionicons';
 
 const FilterForm = ({ area, station, onChangeHandler }) =>
     (
-    <div className="filter-form-container">
-        <div className="container">
-            <div className="row">
-                <div className="date-picker-container col-6">
-                    <div className="column">
-                        <span>From</span>
-                        <div className="row">
-                            <div className="col-9" style={{ paddingRight: 0}}>
-                                <DatePicker
-                                    dialogContainerStyle={theme.dialogContainer}
-                                    className="date-picker"
-                                    hintStyle={theme.formInput}
-                                    hintText="DD/MM/YYYY"
-                                    mode="portrait"
-                                />
-                            </div>
-                            <div className="col-3">
-                                <Ionicon
-                                    icon="ios-calendar-outline"
-                                    fontSize="20px"
-                                    color="#ffffff"
-                                    style={{ marginTop: 11 }}
-                                />
-                            </div>
+    <div className="filter-form-container container-fluid clearfix">
+        <div className="date-picker-container row">
+            <div className="date-picker-container col-6">
+                <div className="column">
+                    <span>From</span>
+                    <div className="row">
+                        <div className="col-9" style={{ paddingRight: 0 }}>
+                            <DatePicker
+                                dialogContainerStyle={theme.dialogContainer}
+                                className="date-picker"
+                                hintStyle={theme.formInput}
+                                hintText="DD/MM/YYYY"
+                                mode="portrait"
+                            />
+                        </div>
+                        <div className="col-3">
+                            <Ionicon
+                                icon="ios-calendar-outline"
+                                fontSize="20px"
+                                color="#ffffff"
+                                style={{ marginTop: 11 }}
+                            />
                         </div>
                     </div>
                 </div>
-                <div className="date-picker-container col-6">
-                    <div className="column">
-                        <span>To</span>
-                        <div className="row">
-                            <div className="col-9" style={{ paddingRight: 0}}>
-                                <DatePicker
-                                    dialogContainerStyle={theme.dialogContainer}
-                                    className="date-picker"
-                                    hintStyle={theme.formInput}
-                                    hintText="DD/MM/YYYY"
-                                    mode="portrait"
-                                />
-                            </div>
-                            <div className="col-3">
-                                <Ionicon
-                                    icon="ios-calendar-outline"
-                                    fontSize="20px"
-                                    color="#ffffff"
-                                    style={{ marginTop: 11 }}
-                                />
-                            </div>
+            </div>
+            <div className="date-picker-container col-6">
+                <div className="column">
+                    <span>To</span>
+                    <div className="row">
+                        <div className="col-9" style={{ paddingRight: 0}}>
+                            <DatePicker
+                                dialogContainerStyle={theme.dialogContainer}
+                                className="date-picker"
+                                hintStyle={theme.formInput}
+                                hintText="DD/MM/YYYY"
+                                mode="portrait"
+                            />
+                        </div>
+                        <div className="col-3">
+                            <Ionicon
+                                icon="ios-calendar-outline"
+                                fontSize="20px"
+                                color="#ffffff"
+                                style={{ marginTop: 11 }}
+                            />
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div className="form-area-container container">
+        <div className="form-area-container container-fluid clearfix">
             <div className="column">
                 <span className="clearfix">Area</span>
                 <SelectField
@@ -75,7 +73,7 @@ const FilterForm = ({ area, station, onChangeHandler }) =>
                 </SelectField>
             </div>
         </div>
-        <div className="form-docking-station-container container">
+        <div className="form-docking-station-container container-fluid clearfix">
             <div className="column">
                 <span className="clearfix">Docking station</span>
                 <SelectField
@@ -89,7 +87,7 @@ const FilterForm = ({ area, station, onChangeHandler }) =>
                 </SelectField>
             </div>
         </div>
-        <div className="container clearfix">
+        <div className="reset-button-container container-fluid clearfix">
             <RaisedButton
                 label="Reset"
                 labelColor="#283f89"

@@ -19,7 +19,7 @@ export default class HeaderNavigation extends Component {
         const { isOpen } = this.state;
 
         return (
-            <div className="container" style={{ padding:0 }}>
+            <div className="container-fluid" style={{ padding:0 }}>
                 <AppBar
                     title={this._getTitleByPathName(location.pathname)}
                     onLeftIconButtonClick={this._drawerToggleHandler.bind(this, !isOpen)}

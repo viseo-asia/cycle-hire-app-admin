@@ -4,6 +4,7 @@ import theme from './theme';
 import './style.css';
 import {Paper} from "material-ui";
 import StationsIconMenu from "./components/StationsIconMenu";
+import PropTypes from 'prop-types';
 
 const data = [
     {name: 'Craven', uv: 3011, pv: 1398, amt: 2210},
@@ -13,9 +14,15 @@ const data = [
     {name: 'Lorem', uv: 1890, pv: 4800, amt: 2181}
 ];
 
-const WeatherBicycleUsage = () => (
-    <div className="station-chart-container container clearfix">
-        <Paper zDepth={1} style={theme.paper}>
+const _chardWidthHandler = () => {
+    if (window.innerWidth >= 992)
+        return window.innerWidth - 650;
+    return window.innerWidth - 70
+};
+
+const WeatherBicycleUsage = ({ containerStyle, paperStyle }) => (
+    <div className="station-chart-container container clearfix" style={containerStyle}>
+        <Paper zDepth={1} style={Object.assign({}, theme.paper, paperStyle)}>
             <div className="row">
                 <div className="title col-10">
                     Weather VS Bicycle usage
@@ -25,7 +32,7 @@ const WeatherBicycleUsage = () => (
                 </div>
             </div>
 
-            <ComposedChart width={window.innerWidth - 70} height={150} data={data}>
+            <ComposedChart width={_chardWidthHandler()} height={150} data={data}>
                 <XAxis hide={true} />
                 <YAxis hide={true} />
                 <Legend verticalAlign="top" height={36}/>
@@ -37,5 +44,10 @@ const WeatherBicycleUsage = () => (
         </Paper>
     </div>
 );
+
+WeatherBicycleUsage.propTypes = {
+    containerStyle: PropTypes.object,
+    paperStyle: PropTypes.object
+};
 
 export default WeatherBicycleUsage;

@@ -4,6 +4,7 @@ import theme from './theme';
 import './style.css';
 import {Paper, RaisedButton} from "material-ui";
 import StationsIconMenu from "./components/StationsIconMenu";
+import PropTypes from 'prop-types';
 
 const data = [
     {name: 'Craven', uv: 30011, pv: 1398, amt: 2210},
@@ -13,9 +14,15 @@ const data = [
     {name: 'Lorem', uv: 1890, pv: 4800, amt: 2181}
 ];
 
-const StationChart = () => (
-    <div className="station-chart-container container clearfix">
-        <Paper zDepth={1} style={theme.paper}>
+const _chardWidthHandler = () => {
+    if (window.innerWidth >= 992)
+        return window.innerWidth - 650;
+    return window.innerWidth - 70
+};
+
+const StationChart = ({ containerStyle, paperStyle }) => (
+    <div className="station-chart-container container clearfix" style={containerStyle}>
+        <Paper zDepth={1} style={Object.assign({}, theme.paper, paperStyle)}>
             <div className="row">
                 <div className="title col-10">
                     Most used stations
@@ -26,7 +33,7 @@ const StationChart = () => (
             </div>
 
             <BarChart
-                width={window.innerWidth - 70}
+                width={_chardWidthHandler()}
                 height={200}
                 data={data}
                 layout="vertical"
@@ -39,7 +46,7 @@ const StationChart = () => (
                 <Bar dataKey="uv" fill="#48b5de" />
             </BarChart>
 
-            <div className="map-button-container">
+            <div className="map-button-container clearfix">
                 <RaisedButton
                     label="Map"
                     buttonStyle={theme.raisedButton}
@@ -51,5 +58,10 @@ const StationChart = () => (
         </Paper>
     </div>
 );
+
+StationChart.propTypes = {
+    containerStyle: PropTypes.object,
+    paperStyle: PropTypes.object
+};
 
 export default StationChart;

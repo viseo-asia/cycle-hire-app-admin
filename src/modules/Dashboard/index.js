@@ -4,6 +4,7 @@ import FilterForm from "./components/stateless/FilterForm";
 import StationChart from "./components/stateless/StationsChart";
 import WeatherBicycleUsage from "./components/stateless/WeatherBicycleUsage";
 import {FlatButton} from "material-ui";
+import GoogleMapHandler from "../../components/stateful/GoogleMapHandler";
 
 export default class DashboardContainer extends Component {
     constructor() {
@@ -31,6 +32,7 @@ export default class DashboardContainer extends Component {
                     backgroundColor="#233672"
                     rippleColor="#233672"
                     hoverColor="#233672"
+                    className="filter-form-button"
                 />
                 <div className={ !!openFilter ? "active-filter" : "inactive-filter"}>
                     {
@@ -49,8 +51,15 @@ export default class DashboardContainer extends Component {
                             null
                     }
                 </div>
-                <StationChart/>
-                <WeatherBicycleUsage />
+                <div className="row">
+                    <div className="col-sm-12 col-md-12 col-lg-6 chart-container">
+                        <StationChart paperStyle={{ height: window.innerHeight / 2, paddingLeft: 20 }}/>
+                        <WeatherBicycleUsage paperStyle={{ height: window.innerHeight / 2, paddingLeft: 20 }} />
+                    </div>
+                    <div className="col-sm-12 col-md-12 col-lg-6 dashboard-map-container">
+                        <GoogleMapHandler containerHeight={window.innerHeight} />
+                    </div>
+                </div>
             </div>
         )
     }

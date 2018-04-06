@@ -11,10 +11,9 @@ const StationsIconMenu = () =>
             targetOrigin={{horizontal: 'right', vertical: 'top'}}
             iconStyle={iconMenu.icon}
         >
-            <MenuItem primaryText="Refresh" />
-            <MenuItem primaryText="Send feedback" />
-            <MenuItem primaryText="Settings" />
-            <MenuItem primaryText="Help" />
+            <MenuItem primaryText="Top 5" />
+            <MenuItem primaryText="Top 10" />
+            <MenuItem primaryText="Top 20" />
         </IconMenu>
     );
 export default StationsIconMenu;

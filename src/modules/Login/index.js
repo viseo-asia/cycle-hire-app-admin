@@ -10,7 +10,7 @@ export default class LoginContainer extends Component {
 
     render() {
         return (
-            <div className="login-container container fill">
+            <div className="login-container">
                 <div className="form-container">
                     <div>
                         <TextField

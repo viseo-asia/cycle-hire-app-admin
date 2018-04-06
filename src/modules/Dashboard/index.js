@@ -53,8 +53,8 @@ export default class DashboardContainer extends Component {
                 </div>
                 <div className="row">
                     <div className="col-sm-12 col-md-12 col-lg-6 chart-container">
-                        <StationChart paperStyle={{ height: window.innerHeight / 2, paddingLeft: 20 }}/>
-                        <WeatherBicycleUsage paperStyle={{ height: window.innerHeight / 2, paddingLeft: 20 }} />
+                        <StationChart paperStyle={{ height: window.innerHeight / 2 }}/>
+                        <WeatherBicycleUsage paperStyle={{ height: window.innerHeight / 2}} />
                     </div>
                     <div className="col-sm-12 col-md-12 col-lg-6 dashboard-map-container">
                         <GoogleMapHandler containerHeight={window.innerHeight} />

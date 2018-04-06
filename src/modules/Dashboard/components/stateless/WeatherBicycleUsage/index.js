@@ -16,7 +16,7 @@ const data = [
 
 const _chardWidthHandler = () => {
     if (window.innerWidth >= 992)
-        return window.innerWidth - 850;
+        return window.innerWidth - 800;
     return window.innerWidth - 70
 };
 

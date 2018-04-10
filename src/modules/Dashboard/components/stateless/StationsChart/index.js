@@ -6,24 +6,6 @@ import {Paper, RaisedButton} from "material-ui";
 import StationsIconMenu from "./components/StationsIconMenu";
 import PropTypes from 'prop-types';
 
-const data = [
-    {name: 'Craven', uv: 30011, pv: 1398, amt: 2210},
-    {name: 'William IV', uv: 3000, pv: 1398, amt: 2210},
-    {name: 'Northumberland Avenue', uv: 2000, pv: 9800, amt: 2290},
-    {name: 'Union Street', uv: 2780, pv: 3908, amt: 2000},
-    {name: 'Lorem', uv: 1890, pv: 4800, amt: 2181},
-    {name: 'Craven Street', uv: 30011, pv: 1398, amt: 2210},
-    {name: 'William IV Street', uv: 3000, pv: 1398, amt: 2210},
-    {name: 'Northumberland Avenue Street', uv: 2000, pv: 9800, amt: 2290},
-    {name: 'Union Street 1', uv: 2780, pv: 3908, amt: 2000},
-    {name: 'Lorem Street', uv: 1890, pv: 4800, amt: 2181},
-    {name: 'Craven 1', uv: 30011, pv: 1398, amt: 2210},
-    {name: 'William IV 2', uv: 3000, pv: 1398, amt: 2210},
-    {name: 'Northumberland Avenue 3', uv: 2000, pv: 9800, amt: 2290},
-    {name: 'Union Street 4', uv: 2780, pv: 3908, amt: 2000},
-    {name: 'Lorem 5', uv: 1890, pv: 4800, amt: 2181}
-];
-
 const _chardWidthHandler = () => {
     if (window.innerWidth >= 992)
         return window.innerWidth - 650;
@@ -39,10 +21,13 @@ class StationChart extends Component {
         }
     }
 
-    _handleTopChartChange = (value) => this.setState({ size: value });
+    _handleTopChartChange = (value) => {
+        this.setState({ size: value });
+        this.props.onSizeChange(value);
+    };
 
     render() {
-        const { containerStyle, paperStyle, chartHeight } = this.props;
+        const { containerStyle, paperStyle, chartHeight, data } = this.props;
         return (
             <div className="station-chart-container container clearfix" style={containerStyle}>
                 <Paper zDepth={1} style={Object.assign({}, theme.paper, paperStyle)}>
@@ -67,7 +52,7 @@ class StationChart extends Component {
                         >
                             <XAxis hide={true}/>
                             <YAxis type="category" dataKey="name" />
-                            <Bar dataKey="uv" fill="#48b5de" />
+                            <Bar dataKey="rainfall" fill="#48b5de" />
                         </BarChart>
                     </div>
 
@@ -87,6 +72,12 @@ class StationChart extends Component {
 }
 
 StationChart.propTypes = {
+    data: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        rainfall: PropTypes.number.isRequired,
+        temperature: PropTypes.number.isRequired
+    })),
+    onSizeChange: PropTypes.func,
     containerStyle: PropTypes.object,
     paperStyle: PropTypes.object,
     chartHeight: PropTypes.number

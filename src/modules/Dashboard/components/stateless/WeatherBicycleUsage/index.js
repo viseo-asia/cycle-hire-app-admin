@@ -22,16 +22,15 @@ const WeatherBicycleUsage = ({ containerStyle, paperStyle, chartHeight, data }) 
                     {/*<StationsIconMenu/>*/}
                 {/*</div>*/}
             </div>
-
             <div className="compose-chart-container">
                 <ComposedChart
                     width={_chardWidthHandler()}
                     height={chartHeight}
                     data={data}
                 >
-                    <XAxis type="category" dataKey="bike_usage" />
-                    <YAxis type="category" dataKey="temperature" />
-                    <Legend verticalAlign="top" height={36}/>
+                    <XAxis dataKey="name"/>
+                    <YAxis />
+                    <Legend verticalAlign="bottom" height={36}/>
                     <CartesianGrid stroke="#f5f5f5" />
                     <Area type="monotone" dataKey="temperature" fill="#ffba00" stroke="#FFC142" />
                     <Bar dataKey="rainfall" barSize={20} fill="#48b5de" />

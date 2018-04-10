@@ -6,6 +6,11 @@
     font-family: Roboto-Regular, sans-serif;
 }
 
+a {
+    text-decoration: none !important;
+    color: inherit;
+}
+
 html, body {
     height: 100%;
     margin: 0;

@@ -5,8 +5,19 @@ import Ionicon from 'react-ionicons';
 import theme from './theme';
 import './style.css';
 import { Link } from "react-router-dom";
+// import auth0 from 'auth0-js';
 
 export default class LoginContainer extends Component {
+    // auth0 = new auth0.WebAuth({
+    //     domain: 'clp-viseo.auth0.com',
+    //     clientID: 'd5tvHjFbVfwkaGHGZ3PUR82d1cC6L6eG',
+    //     redirectUri: 'http://localhost:3000/',
+    //     audience: 'https://codegearsolutions.com',
+    //     responseType: 'token id_token',
+    //     scope: 'openid'
+    // });
+
+    // login = () => this.auth0.authorize();
 
     render() {
         return (
@@ -60,8 +71,6 @@ export default class LoginContainer extends Component {
                     </div>
                     <div style={{ textAlign: 'center' }}>
                         <RaisedButton
-                            href="https://github.com/callemall/material-ui"
-                            target="_blank"
                             label="Connect with facebook"
                             fullWidth={true}
                             secondary={true}
@@ -76,8 +85,6 @@ export default class LoginContainer extends Component {
                         />
 
                         <RaisedButton
-                            href="https://github.com/callemall/material-ui"
-                            target="_blank"
                             label="Sign in with google"
                             fullWidth={true}
                             secondary={false}

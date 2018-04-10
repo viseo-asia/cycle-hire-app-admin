@@ -1,20 +1,10 @@
 import React, { Component } from 'react';
-import {Bar, BarChart, LabelList, Tooltip, XAxis, YAxis} from "recharts";
+import {Bar, BarChart, LabelList, ResponsiveContainer, Tooltip, XAxis, YAxis} from "recharts";
 import theme from './theme';
 import './style.css';
 import {Paper, RaisedButton} from "material-ui";
 import StationsIconMenu from "./components/StationsIconMenu";
 import PropTypes from 'prop-types';
-
-const _chardWidthHandler = () => {
-    if (window.innerWidth > 1440){
-        return window.innerWidth - 950;
-    }
-    if (window.innerWidth >= 992 && window.innerWidth <= 1440) {
-        return window.innerWidth - 650;
-    }
-    return window.innerWidth - 70
-};
 
 class StationChart extends Component {
 
@@ -31,7 +21,7 @@ class StationChart extends Component {
     };
 
     render() {
-        const { containerStyle, paperStyle, chartHeight, data } = this.props;
+        const { containerStyle, paperStyle, data } = this.props;
         return (
             <div className="station-chart-container container clearfix" style={containerStyle}>
                 <Paper zDepth={1} style={Object.assign({}, theme.paper, paperStyle)}>
@@ -45,23 +35,32 @@ class StationChart extends Component {
                     </div>
 
                     <div className="bar-chart-container">
-                        <BarChart
-                            width={_chardWidthHandler()}
-                            height={chartHeight}
-                            data={data.slice(0, this.state.size)}
-                            layout="vertical"
-                            barSize={20}
-                            barCategoryGap={5}
-                            margin={{ top: 5, right: 5, bottom: 5, left: 90 }}
-                        >
-                            <XAxis hide={true}/>
-                            <YAxis type="category" dataKey="name" />
-                            <Tooltip />
-                            <Bar dataKey="rainfall" fill="#48b5de">
-                                <LabelList dataKey="rainfall" style={{ fontSize: 12}} />
-                            </Bar>
-
-                        </BarChart>
+                        <ResponsiveContainer width="100%" height="100%">
+                            <BarChart
+                                data={data.slice(0, this.state.size)}
+                                layout="vertical"
+                                barSize={20}
+                                barCategoryGap={5}
+                                margin={{ top: 5, right: 5, bottom: 5, left: 90 }}
+                            >
+                                <XAxis hide={true}/>
+                                <YAxis
+                                    type="category"
+                                    dataKey="name"
+                                    orientation="left"
+                                    allowDataOverflow={true}
+                                    allowDuplicatedCategory={true}
+                                    axisLine={true}
+                                />
+                                <Tooltip />
+                                <Bar dataKey="rainfall" fill="#48b5de">
+                                    <LabelList
+                                        dataKey="rainfall"
+                                        style={{ fontSize: 12}}
+                                    />
+                                </Bar>
+                            </BarChart>
+                        </ResponsiveContainer>
                     </div>
 
                     <div className="map-button-container clearfix">
@@ -87,8 +86,7 @@ StationChart.propTypes = {
     })),
     onSizeChange: PropTypes.func,
     containerStyle: PropTypes.object,
-    paperStyle: PropTypes.object,
-    chartHeight: PropTypes.number
+    paperStyle: PropTypes.object
 };
 
 export default StationChart;

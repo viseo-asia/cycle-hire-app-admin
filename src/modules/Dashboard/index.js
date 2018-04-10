@@ -76,12 +76,10 @@ export default class DashboardContainer extends Component {
                         <StationChart
                             data={data}
                             onSizeChange={this.onDataChangeHandler.bind(this)}
-                            chartHeight={(window.innerHeight / 2) - 100}
                             paperStyle={{ height: window.innerHeight / 2 }}
                         />
                         <WeatherBicycleUsage
                             data={data}
-                            chartHeight={(window.innerHeight / 2) - 100}
                             paperStyle={{ height: window.innerHeight / 2}}
                         />
                     </div>

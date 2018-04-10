@@ -1,5 +1,5 @@
 import React from 'react';
-import {Area, Bar, CartesianGrid, ComposedChart, Legend, Line, XAxis, YAxis} from "recharts";
+import {Area, Bar, CartesianGrid, ComposedChart, Legend, Line, XAxis, YAxis } from "recharts";
 import theme from './theme';
 import './style.css';
 import {Paper} from "material-ui";
@@ -28,7 +28,7 @@ const WeatherBicycleUsage = ({ containerStyle, paperStyle, chartHeight, data }) 
                     height={chartHeight}
                     data={data}
                 >
-                    <XAxis dataKey="name"/>
+                    <XAxis dataKey="name" />
                     <YAxis />
                     <Legend verticalAlign="bottom" height={36}/>
                     <CartesianGrid stroke="#f5f5f5" />

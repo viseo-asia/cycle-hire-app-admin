@@ -7,8 +7,12 @@ import StationsIconMenu from "./components/StationsIconMenu";
 import PropTypes from 'prop-types';
 
 const _chardWidthHandler = () => {
-    if (window.innerWidth >= 992)
+    if (window.innerWidth > 1440){
+        return window.innerWidth - 950;
+    }
+    if (window.innerWidth >= 992 && window.innerWidth <= 1440) {
         return window.innerWidth - 650;
+    }
     return window.innerWidth - 70
 };
 

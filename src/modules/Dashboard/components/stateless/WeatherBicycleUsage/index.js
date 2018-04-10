@@ -1,13 +1,17 @@
 import React from 'react';
-import {Area, Bar, CartesianGrid, ComposedChart, Legend, Line, XAxis, YAxis } from "recharts";
+import {Area, Bar, CartesianGrid, ComposedChart, Legend, Line, XAxis, YAxis} from "recharts";
 import theme from './theme';
 import './style.css';
 import {Paper} from "material-ui";
 import PropTypes from 'prop-types';
 
 const _chardWidthHandler = () => {
-    if (window.innerWidth >= 992)
+    if (window.innerWidth > 1440){
+        return window.innerWidth - 1100;
+    }
+    if (window.innerWidth >= 992 && window.innerWidth <= 1440) {
         return window.innerWidth - 800;
+    }
     return window.innerWidth - 70
 };
 

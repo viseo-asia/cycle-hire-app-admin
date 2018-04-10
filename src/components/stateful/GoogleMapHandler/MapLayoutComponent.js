@@ -3,6 +3,7 @@ import {withGoogleMap, withScriptjs, GoogleMap, Marker} from "react-google-maps"
 import PinModal from "./components/PinModal";
 import pinImage from "./assets/pinPoint.png";
 import axios from 'axios';
+import {Snackbar} from "material-ui";
 
 class MapLayout extends Component {
 
@@ -10,6 +11,7 @@ class MapLayout extends Component {
         super(props);
 
         this.state = {
+            isLoading: false,
             isOpen: false,
             dataSource: []
         }
@@ -20,12 +22,17 @@ class MapLayout extends Component {
     }
 
     getBikepoints = () => {
+        this.setState({ isLoading: true });
         axios.get('https://tajz77isu1.execute-api.us-east-1.amazonaws.com/dev/bikepoint', {
             responseType: 'json'
         })
         .then(response => {
             // console.log(response.data);
-            this.setState({ dataSource: response.data });
+            this.setState({
+                dataSource: response.data ,
+                isLoading: false,
+                commonName: null
+            });
 
         })
         .catch(error => {
@@ -34,17 +41,23 @@ class MapLayout extends Component {
         });
     };
 
-    _openPinHandler = () => this.setState({ isOpen: !this.state.isOpen });
+    _openPinHandler = (commonName) => this.setState({ isOpen: !this.state.isOpen, commonName });
 
     render() {
-        const { isOpen, dataSource } = this.state;
+        const { isOpen, isLoading, dataSource, commonName } = this.state;
 
         return (
             <div>
+                <Snackbar
+                    open={isLoading}
+                    message="Fetching bikepoint information."
+                    onRequestClose={() => isLoading}
+                    bodyStyle={{ backgroundColor: "#48b5de" }}
+                />
                 <PinModal
                     isOpen={isOpen}
                     toggleHandler={this._openPinHandler}
-                    title={"Craven Street, Strand 13 bikes • 8 spaces"}
+                    title={commonName}
                 />
                 <GoogleMap
                     defaultZoom={15}
@@ -57,7 +70,7 @@ class MapLayout extends Component {
                                 <Marker
                                     position={{ lat: marker.lat, lng: marker.lon}}
                                     icon={pinImage}
-                                    onClick={this._openPinHandler.bind(this)}
+                                    onClick={this._openPinHandler.bind(this, marker.commonName)}
                                 />
                             </div>
                         )

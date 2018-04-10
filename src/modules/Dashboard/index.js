@@ -7,21 +7,21 @@ import {FlatButton} from "material-ui";
 import GoogleMapHandler from "../../components/stateful/GoogleMapHandler";
 
 const dataSource = [
-    {name: 'Craven', rainfall: 30011, bike_usage: 1398, temperature: 2210},
-    {name: 'William IV', rainfall: 3000, bike_usage: 1398, temperature: 2210},
-    {name: 'Northumberland Avenue', rainfall: 2000, bike_usage: 9800, temperature: 2290},
-    {name: 'Union Street', rainfall: 2780, bike_usage: 3908, temperature: 2000},
-    {name: 'Lorem', rainfall: 1890, bike_usage: 4800, temperature: 2181},
-    {name: 'Craven Street', rainfall: 30011, bike_usage: 1398, temperature: 2210},
-    {name: 'William IV Street', rainfall: 3000, bike_usage: 1398, temperature: 2210},
-    {name: 'Northumberland Avenue Street', rainfall: 2000, bike_usage: 9800, temperature: 2290},
-    {name: 'Union Street 1', rainfall: 2780, bike_usage: 3908, temperature: 2000},
-    {name: 'Lorem Street', rainfall: 1890, bike_usage: 4800, temperature: 2181},
-    {name: 'Craven 1', rainfall: 30011, bike_usage: 1398, temperature: 2210},
-    {name: 'William IV 2', rainfall: 3000, bike_usage: 1398, temperature: 2210},
-    {name: 'Northumberland Avenue 3', rainfall: 2000, bike_usage: 9800, temperature: 2290},
-    {name: 'Union Street 4', rainfall: 2780, bike_usage: 3908, temperature: 2000},
-    {name: 'Lorem 5', rainfall: 1890, bike_usage: 4800, temperature: 2181}
+    {id: 1, name: 'Craven', rainfall: 25011, bike_usage: 1398, temperature: 2210},
+    {id: 2, name: 'William IV', rainfall: 3300, bike_usage: 1398, temperature: 2210},
+    {id: 3, name: 'Northumberland Avenue', rainfall: 2000, bike_usage: 9800, temperature: 2290},
+    {id: 4, name: 'Union Street', rainfall: 2780, bike_usage: 3908, temperature: 2000},
+    {id: 5, name: 'Lorem', rainfall: 1890, bike_usage: 4800, temperature: 2181},
+    {id: 6, name: 'Craven Street', rainfall: 37011, bike_usage: 1398, temperature: 2210},
+    {id: 7, name: 'William IV Street', rainfall: 2200, bike_usage: 1398, temperature: 2210},
+    {id: 8, name: 'Northumberland Avenue Street', rainfall: 2000, bike_usage: 9800, temperature: 2290},
+    {id: 9, name: 'Union Street 1', rainfall: 2780, bike_usage: 3908, temperature: 2000},
+    {id: 10, name: 'Lorem Street', rainfall: 1190, bike_usage: 4800, temperature: 2181},
+    {id: 11, name: 'Craven 1', rainfall: 30511, bike_usage: 1398, temperature: 2210},
+    {id: 12, name: 'William IV 2', rainfall: 3330, bike_usage: 1398, temperature: 2210},
+    {id: 13, name: 'Northumberland Avenue 3', rainfall: 2000, bike_usage: 5800, temperature: 2290},
+    {id: 14, name: 'Union Street 4', rainfall: 2780, bike_usage: 3908, temperature: 2000},
+    {id: 15, name: 'Lorem 5', rainfall: 1890, bike_usage: 4800, temperature: 2181}
 ];
 
 export default class DashboardContainer extends Component {

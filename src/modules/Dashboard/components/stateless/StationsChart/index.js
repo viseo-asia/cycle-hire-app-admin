@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Bar, BarChart, LabelList, XAxis, YAxis} from "recharts";
+import {Bar, BarChart, LabelList, Tooltip, XAxis, YAxis} from "recharts";
 import theme from './theme';
 import './style.css';
 import {Paper, RaisedButton} from "material-ui";
@@ -56,6 +56,7 @@ class StationChart extends Component {
                         >
                             <XAxis hide={true}/>
                             <YAxis type="category" dataKey="name" />
+                            <Tooltip />
                             <Bar dataKey="rainfall" fill="#48b5de">
                                 <LabelList dataKey="rainfall" style={{ fontSize: 12}} />
                             </Bar>

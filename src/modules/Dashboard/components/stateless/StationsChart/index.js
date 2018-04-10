@@ -48,7 +48,7 @@ class StationChart extends Component {
                             layout="vertical"
                             barSize={20}
                             barCategoryGap={5}
-                            margin={{ top: 0, bottom: 0 }}
+                            margin={{ top: 5, right: 5, bottom: 5, left: 90 }}
                         >
                             <XAxis hide={true}/>
                             <YAxis type="category" dataKey="name" />

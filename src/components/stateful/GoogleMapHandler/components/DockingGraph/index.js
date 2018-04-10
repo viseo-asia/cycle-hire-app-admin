@@ -1,9 +1,9 @@
 import React from 'react';
 import {Area, Bar, CartesianGrid, ComposedChart, Legend, Line, XAxis, YAxis} from "recharts";
-import theme from './theme';
-import './style.css';
 import {Paper} from "material-ui";
 import PropTypes from 'prop-types';
+import theme from "./theme";
+import './theme/style.css';
 
 const data = [
     {name: 'Craven', uv: 3011, pv: 1398, amt: 2210},
@@ -19,18 +19,9 @@ const _chardWidthHandler = () => {
     return window.innerWidth - 70
 };
 
-const WeatherBicycleUsage = ({ containerStyle, paperStyle, chartHeight }) => (
+const DockingGraph = ({ containerStyle, paperStyle, chartHeight }) => (
     <div className="station-chart-container container clearfix" style={containerStyle}>
         <Paper zDepth={1} style={Object.assign({}, theme.paper, paperStyle)}>
-            <div className="row">
-                <div className="title col-10">
-                    Weather VS Bicycle usage
-                </div>
-                {/*<div className="col-2">*/}
-                    {/*<StationsIconMenu/>*/}
-                {/*</div>*/}
-            </div>
-
             <div className="compose-chart-container">
                 <ComposedChart width={_chardWidthHandler()} height={chartHeight ? chartHeight : 200} data={data}>
                     <XAxis hide={true} />
@@ -46,10 +37,10 @@ const WeatherBicycleUsage = ({ containerStyle, paperStyle, chartHeight }) => (
     </div>
 );
 
-WeatherBicycleUsage.propTypes = {
+DockingGraph.propTypes = {
     containerStyle: PropTypes.object,
     paperStyle: PropTypes.object,
     chartHeight: PropTypes.number
 };
 
-export default WeatherBicycleUsage;
+export default DockingGraph;

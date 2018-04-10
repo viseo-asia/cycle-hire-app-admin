@@ -8,6 +8,10 @@
     color: #fff;
 }
 
+.filter-form-container .date-picker input {
+    color: white !important;
+}
+
 .filter-form-container .date-picker-container span,
 .filter-form-container .form-area-container span,
 .filter-form-container .form-docking-station-container span{

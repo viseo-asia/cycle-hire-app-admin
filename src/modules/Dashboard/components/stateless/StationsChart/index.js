@@ -11,7 +11,7 @@ const data = [
     {name: 'William IV', uv: 3000, pv: 1398, amt: 2210},
     {name: 'Northumberland Avenue', uv: 2000, pv: 9800, amt: 2290},
     {name: 'Union Street', uv: 2780, pv: 3908, amt: 2000},
-    {name: 'Lorem', uv: 1890, pv: 4800, amt: 2181}
+    {name: 'Lorem', uv: 1890, pv: 4800, amt: 2181},
 ];
 
 const _chardWidthHandler = () => {

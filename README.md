@@ -33,7 +33,7 @@ You can find the most recent version of this guide [here](https://github.com/fac
   - [When to Use the `public` Folder](#when-to-use-the-public-folder)
 - [Using Global Variables](#using-global-variables)
 - [Adding Bootstrap](#adding-bootstrap)
-  - [Using a Custom Theme](#using-a-custom-theme)
+  - [Using a Custom Theme](#using-a-custom-index)
 - [Adding Flow](#adding-flow)
 - [Adding a Router](#adding-a-router)
 - [Adding Custom Environment Variables](#adding-custom-environment-variables)
@@ -774,11 +774,11 @@ Alternatively you may use `yarn`:
 yarn add react-bootstrap bootstrap@3
 ```
 
-Import Bootstrap CSS and optionally Bootstrap theme CSS in the beginning of your ```src/themeStyle.js``` file:
+Import Bootstrap CSS and optionally Bootstrap index CSS in the beginning of your ```src/themeStyle.js``` file:
 
 ```js
 import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/css/bootstrap-theme.css';
+import 'bootstrap/dist/css/bootstrap-index.css';
 // Put any other imports below so that CSS from your
 // components takes precedence over default styles.
 ```
@@ -797,8 +797,8 @@ Sometimes you might need to tweak the visual styles of Bootstrap (or equivalent 
 We suggest the following approach:
 
 * Create a new package that depends on the package you wish to customize, e.g. Bootstrap.
-* Add the necessary build steps to tweak the theme, and publish your package on npm.
-* Install your own theme npm package as a dependency of your app.
+* Add the necessary build steps to tweak the index, and publish your package on npm.
+* Install your own index npm package as a dependency of your app.
 
 Here is an example of adding a [customized Bootstrap](https://medium.com/@tacomanator/customizing-create-react-app-aa9ffb88165) that follows these steps.
 

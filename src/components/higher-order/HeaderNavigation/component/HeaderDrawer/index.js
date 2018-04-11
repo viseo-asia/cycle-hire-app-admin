@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
 import { Drawer, MenuItem } from 'material-ui';
-import { bool, func } from 'prop-types';
+import PropTypes from 'prop-types';
 import theme from './theme/index';
 import { Link } from "react-router-dom";
 import {connect} from "react-redux";
 import actionsNavigator from "../../../../../actions";
 
 class HeaderDrawer extends Component {
-    static defaultProps = {
-        isOpen: bool.isRequired,
-        toggleDrawer: func.isRequired
-    };
-
     render() {
 
         const { isOpen, toggleDrawer, nav } = this.props;
@@ -46,6 +41,11 @@ class HeaderDrawer extends Component {
         )
     }
 }
+
+HeaderDrawer.defaultProps = {
+    isOpen: PropTypes.bool.isRequired,
+    toggleDrawer: PropTypes.func.isRequired
+};
 
 const mapStateToProps = state => ({
     nav: state.reducerAdminNavigation

@@ -5,19 +5,10 @@ import Ionicon from 'react-ionicons';
 import theme from './theme';
 import './style.css';
 import { Link } from "react-router-dom";
-// import auth0 from 'auth0-js';
+import Auth0 from "../../config"
 
 export default class LoginContainer extends Component {
-    // auth0 = new auth0.WebAuth({
-    //     domain: 'clp-viseo.auth0.com',
-    //     clientID: 'd5tvHjFbVfwkaGHGZ3PUR82d1cC6L6eG',
-    //     redirectUri: 'http://localhost:3000/',
-    //     audience: 'https://codegearsolutions.com',
-    //     responseType: 'token id_token',
-    //     scope: 'openid'
-    // });
-
-    // login = () => this.auth0.authorize();
+    login = () => Auth0.authorize();
 
     render() {
         return (
@@ -75,6 +66,7 @@ export default class LoginContainer extends Component {
                             fullWidth={true}
                             secondary={true}
                             buttonStyle={{ backgroundColor: "rgb(59, 89, 152)" }}
+                            onClick={this.login}
                             icon={
                                 <Ionicon
                                     icon="logo-facebook"
@@ -91,6 +83,7 @@ export default class LoginContainer extends Component {
                             labelColor={grey600}
                             buttonStyle={{ backgroundColor: white }}
                             style={{ marginTop: 30 }}
+                            onClick={this.login}
                             icon={
                                 <Ionicon
                                     icon="logo-googleplus"

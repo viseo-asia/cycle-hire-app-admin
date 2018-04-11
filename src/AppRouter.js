@@ -7,8 +7,11 @@ import HeaderNavigation from "./components/higher-order/HeaderNavigation";
 import LoginContainer from "./modules/Login";
 // import Error404Container from "./modules/Error404";
 import DashboardContainer from "./modules/Dashboard";
+import AuthCallbackContainer from "./modules/AuthCallbackContainer";
+
 
 class AppRouter extends Component {
+
   render() {
     return (
         <MuiThemeProvider muiTheme={muiTheme}>
@@ -18,6 +21,7 @@ class AppRouter extends Component {
                     <HeaderNavigation>
                         <Route exact path="/user/dashboard" component={UserDashboardContainer} />
                         <Route exact path="/dashboard" component={DashboardContainer} />
+                        <Route exact path="/auth/callback" component={AuthCallbackContainer} />
                         {/*<Route component={Error404Container} />*/}
                     </HeaderNavigation>
                 </Switch>
@@ -26,5 +30,4 @@ class AppRouter extends Component {
     );
   }
 }
-
 export default AppRouter;

@@ -1,8 +1,9 @@
 import React, { Component, Children } from 'react';
 import { AppBar } from "material-ui";
-import HeaderDrawer from "../../stateful/HeaderDrawer";
+import HeaderDrawer from "./component/HeaderDrawer";
+import {connect} from "react-redux";
 
-export default class HeaderNavigation extends Component {
+class HeaderNavigation extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -12,16 +13,14 @@ export default class HeaderNavigation extends Component {
 
     _drawerToggleHandler = (isOpen) => this.setState({ isOpen });
 
-    _getTitleByPathName = (pathName) => pathName.replace(/[/_-]/g, '');
-
     render() {
-        const { children, location } = this.props;
+        const { children, nav } = this.props;
         const { isOpen } = this.state;
 
         return (
             <div className="container-fluid" style={{ padding:0 }}>
                 <AppBar
-                    title={this._getTitleByPathName(location.pathname)}
+                    title={nav.selected.name}
                     onLeftIconButtonClick={this._drawerToggleHandler.bind(this, !isOpen)}
                     style={{ backgroundColor: "rgb(40, 63, 137)" }}
                 />
@@ -36,3 +35,9 @@ export default class HeaderNavigation extends Component {
         )
     }
 }
+
+const mapStateToProps = state => ({
+    nav: state.reducerAdminNavigation
+});
+
+export default connect(mapStateToProps)(HeaderNavigation);

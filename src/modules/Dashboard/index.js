@@ -42,6 +42,7 @@ export default class DashboardContainer extends Component {
 
     render() {
         const { area, station, openFilter, data } = this.state;
+
         return (
             <div className="dashboard-container">
                 <FlatButton

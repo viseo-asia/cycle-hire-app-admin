@@ -9,7 +9,7 @@ import actionsNavigator from "../../../../../actions";
 class HeaderDrawer extends Component {
     render() {
 
-        const { isOpen, toggleDrawer, nav } = this.props;
+        const { isOpen, toggleDrawer, navReducers } = this.props;
 
         return (
             <Drawer
@@ -24,7 +24,7 @@ class HeaderDrawer extends Component {
                     Close Menu
                 </MenuItem>
                 {
-                    nav.items.map((r, index) => (
+                    navReducers.items.map((r, index) => (
                         <Link
                             key={index}
                             to={r.url}
@@ -48,7 +48,7 @@ HeaderDrawer.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-    nav: state.reducerAdminNavigation
+    navReducers: state.reducerAdminNavigation
 });
 
 const mapDispatchTopProps = dispatch => ({

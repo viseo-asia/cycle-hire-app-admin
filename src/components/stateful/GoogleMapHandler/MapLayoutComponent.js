@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {withGoogleMap, withScriptjs, GoogleMap, Marker} from "react-google-maps";
 import { MarkerClusterer } from "react-google-maps/lib/components/addons/MarkerClusterer";
-import PinModal from "./components/PinModal";
 import pinImage from "./assets/pinPoint.png";
-import axios from 'axios';
+import axios from "axios";
+import PropTypes from "prop-types";
 import {Snackbar} from "material-ui";
 
 class MapLayout extends Component {
@@ -13,7 +13,6 @@ class MapLayout extends Component {
 
         this.state = {
             isLoading: false,
-            isOpen: false,
             dataSource: []
         }
     }
@@ -41,14 +40,10 @@ class MapLayout extends Component {
         });
     };
 
-    _openPinHandler = (commonName) => this.setState({ isOpen: !this.state.isOpen, commonName });
-    onMarkerClustererClick = (markerClusterer) => {
-        const clickedMarkers = markerClusterer.getMarkers();
-            console.log(`Current clicked markers length: ${clickedMarkers.length}`);
-        console.log(clickedMarkers)
-    };
+
     render() {
-        const { isOpen, isLoading, dataSource, commonName } = this.state;
+        const { isLoading, dataSource } = this.state;
+        const { onMarkerClusterClick, onMarkerClick } = this.props;
 
         return (
             <div>
@@ -58,17 +53,12 @@ class MapLayout extends Component {
                     onRequestClose={() => isLoading}
                     bodyStyle={{ backgroundColor: "#48b5de" }}
                 />
-                <PinModal
-                    isOpen={isOpen}
-                    toggleHandler={this._openPinHandler}
-                    title={commonName}
-                />
                 <GoogleMap
                     defaultZoom={15}
                     defaultCenter={{ lat: 51.529163, lng: -0.10997 }}
                 >
                     <MarkerClusterer
-                        onClick={this.onMarkerClustererClick}
+                        onClick={(markerCluster) => onMarkerClusterClick(markerCluster)}
                         averageCenter
                         enableRetinaIcons
                         gridSize={60}
@@ -79,7 +69,7 @@ class MapLayout extends Component {
                                 key={index}
                                 position={{ lat: marker.lat, lng: marker.lon}}
                                 icon={pinImage}
-                                onClick={this._openPinHandler.bind(this, marker.commonName)}
+                                onClick={(markerData) => onMarkerClick(Object.assign({}, markerData, marker))}
                             />
                         )
                     }
@@ -90,13 +80,9 @@ class MapLayout extends Component {
     }
 }
 
-// MapLayout.propTypes = {
-//     markers: PropTypes.arrayOf(PropTypes.shape({
-//         position: PropTypes.shape({
-//             lat: PropTypes.number.isRequired,
-//             lng: PropTypes.number.isRequired
-//         })
-//     }))
-// };
+MapLayout.propTypes = {
+    onMarkerClick: PropTypes.func,
+    onMarkerClusterClick: PropTypes.func
+};
 
 export default withScriptjs(withGoogleMap(MapLayout));

@@ -6,6 +6,7 @@ import WeatherBicycleUsage from "./components/stateless/WeatherBicycleUsage";
 import {FlatButton} from "material-ui";
 import GoogleMapHandler from "../../../../components/stateful/GoogleMapHandler";
 import dataSource from "./dataSource.json";
+import PinModal from "../../../../components/stateful/GoogleMapHandler/components/PinModal";
 
 export default class DashboardContainer extends Component {
     constructor() {
@@ -14,7 +15,9 @@ export default class DashboardContainer extends Component {
             area: "London",
             station: "AllStations",
             openFilter: true,
-            data: dataSource
+            isOpen: false,
+            data: dataSource,
+            activePinData: { commonName: null }
         }
     }
 
@@ -22,9 +25,19 @@ export default class DashboardContainer extends Component {
     _handleStationChange = (event, index, station) => this.setState({ station });
     _openFilterHandler = (openFilter) => this.setState({ openFilter: !openFilter });
     onDataChangeHandler = (size) => this.setState({ data: dataSource.slice(0, size) });
+    _openPinHandler = (pinData) => {
+        console.log('=====pindata');
+        console.log(pinData);
+        this.setState({ isOpen: !this.state.isOpen, activePinData: pinData })
+    };
+    onMarkerClusterClick = (markerCluster) => {
+        const clickedMarkers = markerCluster.getMarkers();
+        console.log(`Current clicked markers length: ${clickedMarkers.length}`);
+        console.log(clickedMarkers)
+    };
 
     render() {
-        const { area, station, openFilter, data } = this.state;
+        const { area, station, openFilter, data, isOpen, activePinData } = this.state;
 
         return (
             <div className="dashboard-container">
@@ -68,9 +81,18 @@ export default class DashboardContainer extends Component {
                         />
                     </div>
                     <div className="col-sm-12 col-md-12 col-lg-6 dashboard-map-container">
-                        <GoogleMapHandler containerHeight={window.innerHeight} />
+                        <GoogleMapHandler
+                            containerHeight={window.innerHeight}
+                            onMarkerClick={this._openPinHandler.bind(this)}
+                            onMarkerClusterClick={this.onMarkerClusterClick.bind(this)}
+                        />
                     </div>
                 </div>
+                <PinModal
+                    isOpen={isOpen}
+                    toggleHandler={this._openPinHandler}
+                    title={activePinData.commonName}
+                />
             </div>
         )
     }

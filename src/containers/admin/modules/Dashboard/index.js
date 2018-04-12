@@ -25,11 +25,7 @@ export default class DashboardContainer extends Component {
     _handleStationChange = (event, index, station) => this.setState({ station });
     _openFilterHandler = (openFilter) => this.setState({ openFilter: !openFilter });
     onDataChangeHandler = (size) => this.setState({ data: dataSource.slice(0, size) });
-    _openPinHandler = (pinData) => {
-        console.log('=====pindata');
-        console.log(pinData);
-        this.setState({ isOpen: !this.state.isOpen, activePinData: pinData })
-    };
+    _openPinHandler = (pinData) => this.setState({ isOpen: !this.state.isOpen, activePinData: pinData });
     onMarkerClusterClick = (markerCluster) => {
         const clickedMarkers = markerCluster.getMarkers();
         console.log(`Current clicked markers length: ${clickedMarkers.length}`);

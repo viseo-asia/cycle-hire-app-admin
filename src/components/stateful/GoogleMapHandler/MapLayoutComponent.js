@@ -40,6 +40,7 @@ class MapLayout extends Component {
         });
     };
 
+    _handleEventClick = (fn, event) => fn ? fn(event) : null;
 
     render() {
         const { isLoading, dataSource } = this.state;
@@ -58,10 +59,10 @@ class MapLayout extends Component {
                     defaultCenter={{ lat: 51.529163, lng: -0.10997 }}
                 >
                     <MarkerClusterer
-                        onClick={(markerCluster) => onMarkerClusterClick(markerCluster)}
+                        onClick={(markerClusterEvent) => this._handleEventClick(onMarkerClusterClick, markerClusterEvent)}
                         averageCenter
                         enableRetinaIcons
-                        gridSize={60}
+                        gridSize={100}
                     >
                     {
                         dataSource.map((marker, index) =>
@@ -69,7 +70,7 @@ class MapLayout extends Component {
                                 key={index}
                                 position={{ lat: marker.lat, lng: marker.lon}}
                                 icon={pinImage}
-                                onClick={(markerData) => onMarkerClick(Object.assign({}, markerData, marker))}
+                                onClick={(markerData) => this._handleEventClick(onMarkerClick, (Object.assign({}, markerData, marker)))}
                             />
                         )
                     }

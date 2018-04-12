@@ -1,15 +1,8 @@
 import DashboardContainer from "../containers/admin/modules/Dashboard";
 import UserDashboardContainer from "../containers/admin/modules/UserDashboard";
-import MapPage from "../containers/user/containers/Map/Map";
 
 const navigation = () => {
     const items = [
-        {
-            name: "Map",
-            url: "/map",
-            container: MapPage,
-            permission: "user"
-        },
         {
             name: "Dashboard",
             url: "/admin/dashboard",

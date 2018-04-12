@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {withGoogleMap, withScriptjs, GoogleMap, Marker} from "react-google-maps";
+import {withGoogleMap, withScriptjs, GoogleMap, Marker } from "react-google-maps";
 import { MarkerClusterer } from "react-google-maps/lib/components/addons/MarkerClusterer";
+import { BicyclingLayer } from "react-google-maps/lib/components/BicyclingLayer";
 import pinImage from "./assets/pinPoint.png";
 import axios from "axios";
 import PropTypes from "prop-types";
@@ -44,7 +45,7 @@ class MapLayout extends Component {
 
     render() {
         const { isLoading, dataSource } = this.state;
-        const { onMarkerClusterClick, onMarkerClick } = this.props;
+        const { onMarkerClusterClick, onMarkerClick, showBicyclelayer } = this.props;
 
         return (
             <div>
@@ -75,6 +76,11 @@ class MapLayout extends Component {
                         )
                     }
                     </MarkerClusterer>
+                    {
+                        !!showBicyclelayer ?
+                            <BicyclingLayer autoUpdate={false} />
+                            : null
+                    }
                 </GoogleMap>
             </div>
         )
@@ -83,7 +89,8 @@ class MapLayout extends Component {
 
 MapLayout.propTypes = {
     onMarkerClick: PropTypes.func,
-    onMarkerClusterClick: PropTypes.func
+    onMarkerClusterClick: PropTypes.func,
+    showBicyclelayer: PropTypes.bool
 };
 
 export default withScriptjs(withGoogleMap(MapLayout));

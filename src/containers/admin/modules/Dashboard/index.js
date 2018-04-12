@@ -81,6 +81,7 @@ export default class DashboardContainer extends Component {
                             containerHeight={window.innerHeight}
                             onMarkerClick={this._openPinHandler.bind(this)}
                             onMarkerClusterClick={this.onMarkerClusterClick.bind(this)}
+                            showBicyclelayer={false}
                         />
                     </div>
                 </div>

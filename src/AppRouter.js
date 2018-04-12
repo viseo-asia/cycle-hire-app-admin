@@ -1,28 +1,33 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import muiTheme from './theme';
-import UserDashboardContainer from "./modules/UserDashboard";
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import HeaderNavigation from "./components/higher-order/HeaderNavigation";
-import LoginContainer from "./modules/Login";
-// import Error404Container from "./modules/Error404";
-import DashboardContainer from "./modules/Dashboard";
-import AuthCallbackContainer from "./modules/AuthCallbackContainer";
-
+import LoginContainer from "./containers/admin/modules/Login";
+import { connect } from "react-redux";
+import muiTheme from "./theme";
 
 class AppRouter extends Component {
+    renderContainer = ({url, container}, index) =>
+        (
+            container ?
+                <Route
+                    exact={ true }
+                    path={ url }
+                    key={ index }
+                    component={ container }
+                />
+            : null
+        );
 
   render() {
+    const { reducerNav: { items } } = this.props;
     return (
-        <MuiThemeProvider muiTheme={muiTheme}>
+        <MuiThemeProvider muiTheme={ muiTheme }>
             <Router>
                 <Switch>
-                    <Route exact path="/" component={LoginContainer} />
+                    <Route exact={ true } path="/" component={ LoginContainer } />
                     <HeaderNavigation>
-                        <Route exact path="/user/dashboard" component={UserDashboardContainer} />
-                        <Route exact path="/dashboard" component={DashboardContainer} />
-                        <Route exact path="/auth/callback" component={AuthCallbackContainer} />
-                        {/*<Route component={Error404Container} />*/}
+                        {items.map(this.renderContainer)}
                     </HeaderNavigation>
                 </Switch>
             </Router>
@@ -30,4 +35,9 @@ class AppRouter extends Component {
     );
   }
 }
-export default AppRouter;
+
+const mapStateToProps = state => ({
+    reducerNav: state.reducerAdminNavigation
+});
+
+export default connect(mapStateToProps)(AppRouter);

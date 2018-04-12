@@ -1,4 +1,4 @@
-import {white} from 'material-ui/styles/colors';
+import {white} from "material-ui/styles/colors";
 
 const theme = {
     menuItem: {

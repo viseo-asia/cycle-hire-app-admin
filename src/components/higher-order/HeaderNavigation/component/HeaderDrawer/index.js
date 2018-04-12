@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { Drawer, MenuItem } from 'material-ui';
-import PropTypes from 'prop-types';
-import theme from './theme/index';
+import React, { Component } from "react";
+import { Drawer, MenuItem } from "material-ui";
+import PropTypes from "prop-types";
+import theme from "./theme/index";
 import { Link } from "react-router-dom";
 import {connect} from "react-redux";
 import actionsNavigator from "../../../../../actions";

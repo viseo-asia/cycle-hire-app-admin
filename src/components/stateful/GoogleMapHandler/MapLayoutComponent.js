@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {withGoogleMap, withScriptjs, GoogleMap, Marker} from "react-google-maps";
+import { MarkerClusterer } from "react-google-maps/lib/components/addons/MarkerClusterer";
 import PinModal from "./components/PinModal";
 import pinImage from "./assets/pinPoint.png";
 import axios from 'axios';
@@ -41,7 +42,11 @@ class MapLayout extends Component {
     };
 
     _openPinHandler = (commonName) => this.setState({ isOpen: !this.state.isOpen, commonName });
-
+    onMarkerClustererClick = (markerClusterer) => {
+        const clickedMarkers = markerClusterer.getMarkers();
+            console.log(`Current clicked markers length: ${clickedMarkers.length}`);
+        console.log(clickedMarkers)
+    };
     render() {
         const { isOpen, isLoading, dataSource, commonName } = this.state;
 
@@ -62,18 +67,23 @@ class MapLayout extends Component {
                     defaultZoom={15}
                     defaultCenter={{ lat: 51.529163, lng: -0.10997 }}
                 >
+                    <MarkerClusterer
+                        onClick={this.onMarkerClustererClick}
+                        averageCenter
+                        enableRetinaIcons
+                        gridSize={60}
+                    >
                     {
-                        // markers.map((marker, index) =>
                         dataSource.map((marker, index) =>
-                            <div key={index}>
-                                <Marker
-                                    position={{ lat: marker.lat, lng: marker.lon}}
-                                    icon={pinImage}
-                                    onClick={this._openPinHandler.bind(this, marker.commonName)}
-                                />
-                            </div>
+                            <Marker
+                                key={index}
+                                position={{ lat: marker.lat, lng: marker.lon}}
+                                icon={pinImage}
+                                onClick={this._openPinHandler.bind(this, marker.commonName)}
+                            />
                         )
                     }
+                    </MarkerClusterer>
                 </GoogleMap>
             </div>
         )

@@ -1,16 +1,31 @@
-const navigations = () => {
+import DashboardContainer from "../containers/admin/modules/Dashboard";
+import UserDashboardContainer from "../containers/admin/modules/UserDashboard";
+import MapPage from "../containers/user/containers/Map/Map";
+
+const navigation = () => {
     const items = [
         {
+            name: "Map",
+            url: "/map",
+            container: MapPage,
+            permission: "user"
+        },
+        {
             name: "Dashboard",
-            url: "/dashboard"
+            url: "/admin/dashboard",
+            container: DashboardContainer,
+            permission: "admin"
         },
         {
             name: "User Dashboard",
-            url: "/user/dashboard"
+            url: "/admin/user/dashboard",
+            container: UserDashboardContainer,
+            permission: "admin"
         },
         {
             name: "Log In",
-            url: "/"
+            url: "/",
+            permission: "*"
         }
     ];
     const selected = items[0];
@@ -19,13 +34,14 @@ const navigations = () => {
     })
 };
 
-const initialState = navigations.bind(this)();
+const findPath = (items, url ) => items.find(path => path.url === url);
+const initialState = navigation.bind(this)();
 
 const reducerAdminNavigation = (state = initialState, action) => {
     switch(action.type) {
         case "ALTER_SELECTED_NAVIGATION":
-            const path = state.items.find(path => path.url === action.payload);
-            state = Object.assign({}, state, {selected: path});
+            return Object.assign({}, state, { selected: findPath(state.items, action.payload) });
+        case "SHOW_COMPONENTS":
             return state;
         default:
             return state
